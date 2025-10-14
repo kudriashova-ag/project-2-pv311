@@ -2,18 +2,34 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import React, { useContext } from "react";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import ThemeContext from "../contexts/themeContext";
+import AntDesign from "@expo/vector-icons/AntDesign";
+
 
 const UserBlock = (props) => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.main}>
-        <Image
-          source={{ uri: "https://i.pravatar.cc/150?img=1" }}
-          style={styles.avatar}
-        />
-        <Text>UserBlock</Text>
+        <View>
+          <Image
+            source={{ uri: "https://i.pravatar.cc/150?img=1" }}
+            style={styles.avatar}
+          />
+          <Text>UserBlock</Text>
+        </View>
+        <Pressable onPress={toggleTheme}>
+          <Text>
+            {theme === "light" ? (
+              <AntDesign name="moon" size={24} color="black" />
+            ) : (
+              <AntDesign name="sun" size={24} color="black" />
+            )}
+          </Text>
+        </Pressable>
       </View>
 
       <DrawerItemList {...props} />
@@ -30,7 +46,8 @@ const styles = StyleSheet.create({
   },
   main: {
     flex: 1,
-    backgroundColor: "#e1e1e1",
+    flexDirection: "row",
+    justifyContent: "space-between",
     padding: 10,
   },
 });
