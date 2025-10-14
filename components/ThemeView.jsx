@@ -1,21 +1,17 @@
-import React from 'react';
-import { StyleSheet, useColorScheme, View } from 'react-native';
+import { useContext } from "react";
+import { View } from "react-native";
+import Colors from "../constants/Colors";
+import ThemeContext from "../contexts/themeContext";
 
-const ThemeView = ({children}) => {
-    const scheme = useColorScheme();
+const ThemeView = ({ children, style, ...props }) => {
+  const { theme } = useContext(ThemeContext);
+  const themeColor = Colors[theme];
 
-    return (
-        <View style={[styles.main, { backgroundColor: scheme === 'dark' ? '#222' : 'white' }]}>
-            {children}
-        </View>
-    )
-}
-
-const styles = StyleSheet.create({
-    main: {
-        flex: 1,
-        padding: 10
-    }
-})
+  return (
+    <View style={[{ backgroundColor: themeColor.bgColor }, style]} {...props}>
+      {children}
+    </View>
+  );
+};
 
 export default ThemeView;
