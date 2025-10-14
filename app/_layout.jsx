@@ -1,32 +1,50 @@
-import React from 'react';
-import { StyleSheet, useColorScheme, View } from 'react-native';
-import { Drawer } from 'expo-router/drawer';
-import UserBlock from '../components/userBlock';
-import ThemeProvider from '../providers/themeProvider';
+import React, { useContext } from "react";
+import { StyleSheet, useColorScheme, View } from "react-native";
+import { Drawer } from "expo-router/drawer";
+import UserBlock from "../components/userBlock";
+import ThemeProvider from "../providers/themeProvider";
+import ThemeContext from "../contexts/themeContext";
+import Colors from "../constants/Colors";
 
-const RootLayout = () => {
-    const schema = useColorScheme();
+const DrawerLayoutContent = () => {
+  const { theme } = useContext(ThemeContext);
+  const themeColor = Colors[theme];
 
   return (
-    <ThemeProvider>
-      <Drawer
-        drawerContent={(props) => <UserBlock {...props} />}
-        screenOptions={{
-          drawerActiveTintColor: "#874040ff",
-          drawerStyle: { backgroundColor: schema === "dark" ? "#333" : "#fff" },
-          drawerLabelStyle: {
-            color: schema === "dark" ? "#fff" : "#333",
-          },
+    <Drawer
+      drawerContent={(props) => <UserBlock {...props} />}
+      screenOptions={{
+        drawerActiveTintColor: "#874040ff",
+        drawerStyle: { backgroundColor: themeColor.bgColor },
+        drawerLabelStyle: {
+          color: themeColor.textColor,
+        },
+        headerStyle: { backgroundColor: themeColor.bgColor },
+        headerTitleStyle: { color: themeColor.textColor },
+        headerTintColor: themeColor.textColor,
+      }}
+    >
+      <Drawer.Screen name="home" options={{ title: "Home" }} />
+      <Drawer.Screen name="account" options={{ title: "Account" }} />
+      <Drawer.Screen name="(settings)" options={{ title: "Settings" }} />
+      <Drawer.Screen
+        name="bookDetails"
+        options={{
+          drawerItemStyle: { display: "none" }, // приховати з меню
         }}
-      >
-        <Drawer.Screen name="home" options={{ title: "Home" }} />
-        <Drawer.Screen name="account" options={{ title: "Account" }} />
-        <Drawer.Screen name="(settings)" options={{ title: "Settings" }} />
-      </Drawer>
+      />
+    </Drawer>
+  );
+};
+
+const RootLayout = () => {
+  return (
+    <ThemeProvider>
+      <DrawerLayoutContent />
     </ThemeProvider>
   );
-}
+};
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
 
 export default RootLayout;

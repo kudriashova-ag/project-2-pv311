@@ -6,6 +6,7 @@ import React, { useContext } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import ThemeContext from "../contexts/themeContext";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import ThemeText from "./ThemeText";
 
 
 const UserBlock = (props) => {
@@ -19,16 +20,16 @@ const UserBlock = (props) => {
             source={{ uri: "https://i.pravatar.cc/150?img=1" }}
             style={styles.avatar}
           />
-          <Text>UserBlock</Text>
+          <ThemeText>User Block</ThemeText>
         </View>
         <Pressable onPress={toggleTheme}>
-          <Text>
+          <ThemeText>
             {theme === "light" ? (
-              <AntDesign name="moon" size={24} color="black" />
+              <AntDesign name="moon" size={24}  />
             ) : (
-              <AntDesign name="sun" size={24} color="black" />
+              <AntDesign name="sun" size={24} />
             )}
-          </Text>
+          </ThemeText>
         </Pressable>
       </View>
 

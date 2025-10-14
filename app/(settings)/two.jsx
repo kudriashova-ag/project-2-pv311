@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import ThemeView from '../../components/ThemeView';
+import ThemeText from '../../components/ThemeText';
 
 const Two = () => {
     return (
-        <View style={{flex: 1}}>
-            <Text>Two</Text>
-        </View>
+      <ThemeView style={{ flex: 1 }}>
+        <ThemeText>Two</ThemeText>
+      </ThemeView>
     );
 }
 
