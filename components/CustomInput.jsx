@@ -2,6 +2,10 @@ import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
 const CustomInput = ({ field, form, ...props }) => {
+  const hasError =
+    form.errors[field.name] &&
+    form.initialValues[field.name] != form.values[field.name];
+  
   return (
     <View>
       <TextInput
@@ -10,6 +14,9 @@ const CustomInput = ({ field, form, ...props }) => {
         style={styles.input}
         placeholder={field.name}
       />
+      {hasError && (
+        <Text style={{ color: "red" }}>{form.errors[field.name]}</Text>
+      )}
     </View>
   );
 };
