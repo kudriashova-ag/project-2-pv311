@@ -26,6 +26,7 @@ const DrawerLayoutContent = () => {
     >
       <Drawer.Screen name="home" options={{ title: "Home" }} />
       <Drawer.Screen name="account" options={{ title: "Account" }} />
+      <Drawer.Screen name="(users)" options={{ title: "Users" }} />
       <Drawer.Screen name="(settings)" options={{ title: "Settings" }} />
       <Drawer.Screen
         name="bookDetails"
