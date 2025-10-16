@@ -1,8 +1,9 @@
-import React, { use } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import ThemeView from '../components/ThemeView';
-import ThemeText from '../components/ThemeText';
-import BookCard from '../components/BookCard';
+import React, { use } from "react";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import ThemeView from "../components/ThemeView";
+import ThemeText from "../components/ThemeText";
+import BookCard from "../components/BookCard";
+import api from "../api/api";
 
 const books = [
   {
@@ -107,18 +108,26 @@ const books = [
   },
 ];
 
-
 const Home = () => {
-    
-    return (
-        <ThemeView style={{flex: 1}}>
-            <FlatList
-                data={books}
-                renderItem={({ item }) => <BookCard book={item} />} />
-        </ThemeView>
-    );
-}
+  // const getPosts = () => {
+  //   api
+  //     .get("posts")
+  //     .then((res) => console.log(res.data))
+  //     .catch((err) => console.log(err));
+  // };
 
-const styles = StyleSheet.create({})
+  // getPosts();
+
+  return (
+    <ThemeView style={{ flex: 1 }}>
+      <FlatList
+        data={books}
+        renderItem={({ item }) => <BookCard book={item} />}
+      />
+    </ThemeView>
+  );
+};
+
+const styles = StyleSheet.create({});
 
 export default Home;

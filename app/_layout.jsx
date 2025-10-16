@@ -5,6 +5,8 @@ import UserBlock from "../components/userBlock";
 import ThemeProvider from "../providers/themeProvider";
 import ThemeContext from "../contexts/themeContext";
 import Colors from "../constants/Colors";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
 
 const DrawerLayoutContent = () => {
   const { theme } = useContext(ThemeContext);
@@ -40,9 +42,11 @@ const DrawerLayoutContent = () => {
 
 const RootLayout = () => {
   return (
-    <ThemeProvider>
-      <DrawerLayoutContent />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider>
+        <DrawerLayoutContent />
+      </ThemeProvider>
+    </Provider>
   );
 };
 
