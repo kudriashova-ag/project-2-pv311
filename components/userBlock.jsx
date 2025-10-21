@@ -7,10 +7,12 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import ThemeContext from "../contexts/themeContext";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import ThemeText from "./ThemeText";
+import { useSelector } from "react-redux";
 
 
 const UserBlock = (props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const {user} = useSelector(state => state.auth)
 
   return (
     <DrawerContentScrollView {...props}>
@@ -20,7 +22,7 @@ const UserBlock = (props) => {
             source={{ uri: "https://i.pravatar.cc/150?img=1" }}
             style={styles.avatar}
           />
-          <ThemeText>User Block</ThemeText>
+          <ThemeText>{user?.name}</ThemeText>
         </View>
         <Pressable onPress={toggleTheme}>
           <ThemeText>

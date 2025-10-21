@@ -6,6 +6,7 @@ export const loginUser = createAsyncThunk("auth/loginUser",
     async ({ email, password }) => { 
         const { data } = await api.post('login', { email, password });
         await AsyncStorage.setItem('token', data.token);
+        console.log(data);
         return data;
     }
 );
