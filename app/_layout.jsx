@@ -1,16 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, useColorScheme, View } from "react-native";
 import { Drawer } from "expo-router/drawer";
 import UserBlock from "../components/userBlock";
 import ThemeProvider from "../providers/themeProvider";
 import ThemeContext from "../contexts/themeContext";
 import Colors from "../constants/Colors";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { store } from "../store/store";
+import { fetchUser } from "../features/auth/authThunk";
 
 const DrawerLayoutContent = () => {
   const { theme } = useContext(ThemeContext);
   const themeColor = Colors[theme];
+  const dispatch = useDispatch();
+
+  useEffect(() => { 
+    dispatch(fetchUser());
+  }, [])
 
   return (
     <Drawer

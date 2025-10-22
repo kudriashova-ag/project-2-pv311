@@ -23,8 +23,6 @@ const Login = () => {
 
   const handleSubmit = (values) => {
       dispatch(loginUser(values));
-    
-      
   };
 
   return (
